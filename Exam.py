@@ -1,15 +1,10 @@
-from time import *
-def dec(func):
-    def wrapp():
-        start = time()
-        a = func()
-        print( "Done in:", time() - start)
-        return a
-    return wrapp
+def func(start, step):
+    current = start
+    while True:
+        yield current
+        current += step
 
-@dec
-def func():
-    print("Start")
-    for i in range(1,1_000_000_000):pass
+generator = func(1, 2)
 
-func()
+for i in range(10):
+    print(next(generator))
